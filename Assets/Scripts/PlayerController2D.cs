@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Gender
+{
+    Female,
+    Male
+}
+
 public class PlayerController2D : MonoBehaviour
 {
 
-    enum Gender
-    {
-        Female,
-        Male
-    }
+    
 
     [SerializeField]
     private Gender gender = Gender.Female;
@@ -18,6 +20,7 @@ public class PlayerController2D : MonoBehaviour
     private float speed = 8;
 
     private Vector3 changeMovement;
+    private Vector3 savedMovement;
 
     [SerializeField]
     private int maxHealth = 5;
@@ -25,15 +28,21 @@ public class PlayerController2D : MonoBehaviour
     private int currentHealth;
     private Rigidbody2D rb;
 
+    [SerializeField]
+    private GameObject slipperBulletPrefab;
+    [SerializeField]
+    private GameObject slipperFireGameObject;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        savedMovement = Vector3.up;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ManageHealth();
         InputHandle();
@@ -73,6 +82,11 @@ public class PlayerController2D : MonoBehaviour
             changeMovement.x = Input.GetAxisRaw("HorizontalMale");
             changeMovement.y = Input.GetAxisRaw("VerticalMale");
         }
+
+        if (changeMovement != Vector3.zero)
+        {
+            savedMovement = changeMovement.normalized;
+        }
     }
 
     public void MovePlayer()
@@ -87,11 +101,18 @@ public class PlayerController2D : MonoBehaviour
     {
         if (gender == Gender.Female)
         {
-
+            if (Input.GetButtonDown("SlipperFemale")){
+                Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
+                Debug.Log("Gertrude attacks with direction " + savedMovement);
+            }
         }
         else
         {
-
+            if (Input.GetButtonDown("SlipperMale"))
+            {
+                Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
+                Debug.Log("Ignazio attacks with direction " + savedMovement);
+            }
         }
     }
 }
