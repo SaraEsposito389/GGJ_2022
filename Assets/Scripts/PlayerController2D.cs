@@ -10,9 +10,6 @@ public enum Gender
 
 public class PlayerController2D : MonoBehaviour
 {
-
-    
-
     [SerializeField]
     private Gender gender = Gender.Female;
 
@@ -45,6 +42,14 @@ public class PlayerController2D : MonoBehaviour
     void FixedUpdate()
     {
         ManageHealth();
+        if (currentHealth != 0)
+        {
+            ManageMovement();
+        }
+    }
+
+    private void Update()
+    {
         InputHandle();
     }
 
@@ -57,7 +62,6 @@ public class PlayerController2D : MonoBehaviour
     {
         if (currentHealth != 0)
         {
-            ManageMovement();
             ManageAttack();
         }
     }
@@ -102,7 +106,7 @@ public class PlayerController2D : MonoBehaviour
         if (gender == Gender.Female)
         {
             if (Input.GetButtonDown("SlipperFemale")){
-                Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
+                SpawnSlippetBullet();
                 Debug.Log("Gertrude attacks with direction " + savedMovement);
             }
         }
@@ -110,9 +114,22 @@ public class PlayerController2D : MonoBehaviour
         {
             if (Input.GetButtonDown("SlipperMale"))
             {
-                Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
+                SpawnSlippetBullet();
                 Debug.Log("Ignazio attacks with direction " + savedMovement);
             }
         }
+    }
+
+    private void SpawnSlippetBullet()
+    {
+        GameObject go = Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
+        SlipperBullet sb = go.GetComponent<SlipperBullet>();
+        sb.SetSlipperOwner(gender);
+        sb.SetDirection(savedMovement);
+    }
+
+    public Gender GetGender()
+    {
+        return gender;
     }
 }

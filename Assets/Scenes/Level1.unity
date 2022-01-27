@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1924066662515530359, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
       propertyPath: speed
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1924066662515530359, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
       propertyPath: slipperBulletPrefab
@@ -294,7 +294,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3905581877033643808, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
       propertyPath: speed
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3905581877033643808, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
       propertyPath: slipperBulletPrefab
