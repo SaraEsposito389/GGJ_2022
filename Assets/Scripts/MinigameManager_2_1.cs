@@ -22,12 +22,7 @@ public class MinigameManager_2_1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i=0; i < numSpawnable; i ++)
-        {
-            Vector2 pos = new Vector2(Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y/2));
-            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
-            Instantiate(spawnablePrefab, pos, rotation);
-        }
+        SpawnPrefabs();
     }
 
     // Update is called once per frame
@@ -36,10 +31,20 @@ public class MinigameManager_2_1 : MonoBehaviour
         
     }
 
+    void SpawnPrefabs()
+    {
+        for (int i = 0; i < numSpawnable; i++)
+        {
+            Vector2 pos = new Vector2(Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y / 2));
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
+            Instantiate(spawnablePrefab, pos, rotation);
+        }
+    }
+
     void IncreaseScore()
     {
         score++;
-        if (score >= minScoreToWin) // if with timer check also timer end
+        if (score >= minScoreToWin || score == numSpawnable) // if with timer check also timer end
         {
             EndMinigame();
         }
@@ -47,6 +52,7 @@ public class MinigameManager_2_1 : MonoBehaviour
 
     void EndMinigame()
     {
+        Debug.Log("End Minigame");
         // Dialog
         // NextLevel
     }

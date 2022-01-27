@@ -16,8 +16,13 @@ public class CollectableSlipper : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(collider.gameObject.name);
+        if (other.gameObject.CompareTag("Player") && other.isTrigger)
+        {
+            // Generate event to increase score
+            Destroy(gameObject);
+        }
+            
     }
 }
