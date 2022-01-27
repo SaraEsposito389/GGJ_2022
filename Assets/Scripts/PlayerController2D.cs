@@ -15,7 +15,7 @@ public class PlayerController2D : MonoBehaviour
     private Gender gender = Gender.Female;
 
     [SerializeField]
-    private float speed = 0;
+    private float speed = 8;
 
     private Vector3 changeMovement;
 
