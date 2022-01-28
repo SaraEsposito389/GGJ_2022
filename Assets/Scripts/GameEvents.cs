@@ -29,4 +29,16 @@ public class GameEvents : MonoBehaviour
         onChangeScore?.Invoke(newValue);
     }
 
+    public event Action onDestroyMaleSlipperBullet;
+    public void DestroyMaleSlipperBullet()
+    {
+        onDestroyMaleSlipperBullet?.Invoke();
+    }
+
+    public event Action onDestroyFemaleSlipperBullet;
+    public void DestroyFemaleSlipperBullet()
+    {
+        onDestroyFemaleSlipperBullet?.Invoke();
+    }
+
 }

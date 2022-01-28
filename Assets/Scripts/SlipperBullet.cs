@@ -41,14 +41,27 @@ public class SlipperBullet : MonoBehaviour
             PlayerController2D otherPc = other.GetComponent<PlayerController2D>();
             if (otherPc && otherPc.GetGender() != slipperOwner)
             {
-                Destroy(this.gameObject);
+                DestroyBullet();
                 Debug.Log(other.name);
             }
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
-            Destroy(this.gameObject);
+            DestroyBullet();
         }
+    }
+
+    private void DestroyBullet()
+    {
+        if (slipperOwner == Gender.Male)
+        {
+            GameEvents.Instance.DestroyMaleSlipperBullet();
+        } else if (slipperOwner == Gender.Female)
+        {
+            GameEvents.Instance.DestroyFemaleSlipperBullet();
+        }
+
+        Destroy(this.gameObject);
     }
 
     public void SetSlipperOwner(Gender newSlipperOwner)

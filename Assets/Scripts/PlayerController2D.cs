@@ -30,12 +30,35 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     private GameObject slipperFireGameObject;
 
+    private bool isSlipperReady;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         savedMovement = Vector3.up;
+        isSlipperReady = true;
+
+        if (gender == Gender.Male)
+        {
+            GameEvents.Instance.onDestroyMaleSlipperBullet += SlipperBulletDestroyed;
+        } else if (gender == Gender.Female)
+        {
+            GameEvents.Instance.onDestroyFemaleSlipperBullet += SlipperBulletDestroyed;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (gender == Gender.Male)
+        {
+            GameEvents.Instance.onDestroyMaleSlipperBullet -= SlipperBulletDestroyed;
+        }
+        else if (gender == Gender.Female)
+        {
+            GameEvents.Instance.onDestroyFemaleSlipperBullet -= SlipperBulletDestroyed;
+        }
     }
 
     // Update is called once per frame
@@ -103,19 +126,27 @@ public class PlayerController2D : MonoBehaviour
 
     private void ManageAttack()
     {
-        if (gender == Gender.Female)
+        if (isSlipperReady)
         {
-            if (Input.GetButtonDown("SlipperFemale")){
-                SpawnSlippetBullet();
-                Debug.Log("Gertrude attacks with direction " + savedMovement);
-            }
-        }
-        else
-        {
-            if (Input.GetButtonDown("SlipperMale"))
+            if (gender == Gender.Female)
             {
-                SpawnSlippetBullet();
-                Debug.Log("Ignazio attacks with direction " + savedMovement);
+                if (Input.GetButtonDown("SlipperFemale"))
+                {
+                    SpawnSlippetBullet();
+                    Debug.Log("Gertrude attacks with direction " + savedMovement);
+
+                    isSlipperReady = false;
+                }
+            }
+            else
+            {
+                if (Input.GetButtonDown("SlipperMale"))
+                {
+                    SpawnSlippetBullet();
+                    Debug.Log("Ignazio attacks with direction " + savedMovement);
+
+                    isSlipperReady = false;
+                }
             }
         }
     }
@@ -126,6 +157,11 @@ public class PlayerController2D : MonoBehaviour
         SlipperBullet sb = go.GetComponent<SlipperBullet>();
         sb.SetSlipperOwner(gender);
         sb.SetDirection(savedMovement);
+    }
+
+    private void SlipperBulletDestroyed()
+    {
+        isSlipperReady = true;
     }
 
     public Gender GetGender()
