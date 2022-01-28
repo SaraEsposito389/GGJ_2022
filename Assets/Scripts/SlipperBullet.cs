@@ -10,7 +10,7 @@ public class SlipperBullet : MonoBehaviour
     private float speed;
 
     [SerializeField]
-    private float damage;
+    private int damage = 1;
 
     private Gender slipperOwner;
 
@@ -41,8 +41,8 @@ public class SlipperBullet : MonoBehaviour
             PlayerController2D otherPc = other.GetComponent<PlayerController2D>();
             if (otherPc && otherPc.GetGender() != slipperOwner)
             {
+                otherPc.TakeDamage(damage);
                 DestroyBullet();
-                Debug.Log(other.name);
             }
         }
         else if (other.gameObject.CompareTag("Wall"))

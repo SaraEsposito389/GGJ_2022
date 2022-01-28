@@ -29,8 +29,11 @@ public class PlayerController2D : MonoBehaviour
     private GameObject slipperBulletPrefab;
     [SerializeField]
     private GameObject slipperFireGameObject;
+    [SerializeField]
+    private IntValue numThrownSlippers = null;
 
     private bool isSlipperReady;
+    private bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,7 @@ public class PlayerController2D : MonoBehaviour
         currentHealth = maxHealth;
         savedMovement = Vector3.up;
         isSlipperReady = true;
+        isDead = false;
 
         if (gender == Gender.Male)
         {
@@ -64,8 +68,7 @@ public class PlayerController2D : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ManageHealth();
-        if (currentHealth != 0)
+        if (!isDead)
         {
             ManageMovement();
         }
@@ -73,17 +76,51 @@ public class PlayerController2D : MonoBehaviour
 
     private void Update()
     {
+        ManageHealth();
         InputHandle();
     }
 
     private void ManageHealth()
     {
+        if (currentHealth == 0 && !isDead)
+        {
+            isDead = true;
+            Debug.Log(gameObject.name + ": sono morto" );
+        }
+    }
 
+    public void TakeDamage(int damage)
+    {
+        int newHealth = currentHealth - damage;
+        ChangeHealth(newHealth);
+    }
+
+    public void Heal(int healAmount)
+    {
+        int newHealth = currentHealth + healAmount;
+        ChangeHealth(newHealth);
+    }
+
+    private void ChangeHealth(int newHealth)
+    {
+        Debug.Log("new health pre clamp " + newHealth);
+        newHealth = Mathf.Clamp(newHealth, 0, maxHealth);
+        currentHealth = newHealth;
+
+        if (gender == Gender.Male)
+        {
+            GameEvents.Instance.ChangeMaleHealth(currentHealth);
+        }
+        else if (gender == Gender.Female)
+        {
+            GameEvents.Instance.ChangeFemaleHealth(currentHealth);
+        }
+        
     }
 
     private void InputHandle()
     {
-        if (currentHealth != 0)
+        if (!isDead)
         {
             ManageAttack();
         }
@@ -135,7 +172,7 @@ public class PlayerController2D : MonoBehaviour
                     SpawnSlippetBullet();
                     Debug.Log("Gertrude attacks with direction " + savedMovement);
 
-                    isSlipperReady = false;
+                    
                 }
             }
             else
@@ -144,8 +181,6 @@ public class PlayerController2D : MonoBehaviour
                 {
                     SpawnSlippetBullet();
                     Debug.Log("Ignazio attacks with direction " + savedMovement);
-
-                    isSlipperReady = false;
                 }
             }
         }
@@ -157,6 +192,13 @@ public class PlayerController2D : MonoBehaviour
         SlipperBullet sb = go.GetComponent<SlipperBullet>();
         sb.SetSlipperOwner(gender);
         sb.SetDirection(savedMovement);
+
+        if (numThrownSlippers != null)
+        {
+            numThrownSlippers.SetValue(numThrownSlippers.GetValue() + 1);
+        }
+
+        isSlipperReady = false;
     }
 
     private void SlipperBulletDestroyed()

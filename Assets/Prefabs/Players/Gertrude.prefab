@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gender: 0
-  speed: 8
+  speed: 10
   maxHealth: 5
-  slipperBulletPrefab: {fileID: 0}
+  slipperBulletPrefab: {fileID: 9137149108655067077, guid: 6fca3ccd44cf4e447a8b474da5c5fece, type: 3}
+  slipperFireGameObject: {fileID: 6619379956689028584}
+  numThrownSlippers: {fileID: 11400000, guid: ad96710e6adf27940829f81281c98903, type: 2}
 --- !u!50 &1924066662515530352
 Rigidbody2D:
   serializedVersion: 4

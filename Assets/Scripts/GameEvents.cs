@@ -41,4 +41,16 @@ public class GameEvents : MonoBehaviour
         onDestroyFemaleSlipperBullet?.Invoke();
     }
 
+    public event Action<int> onChangeMaleHealth;
+    public void ChangeMaleHealth(int newValue)
+    {
+        onChangeMaleHealth?.Invoke(newValue);
+    }
+
+    public event Action<int> onChangeFemaleHealth;
+    public void ChangeFemaleHealth(int newValue)
+    {
+        onChangeFemaleHealth?.Invoke(newValue);
+    }
+
 }
