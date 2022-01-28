@@ -39,7 +39,9 @@ public class PlayerController2D : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
+
+        ChangeHealth(maxHealth);
+
         savedMovement = Vector3.up;
         isSlipperReady = true;
         isDead = false;
@@ -103,7 +105,6 @@ public class PlayerController2D : MonoBehaviour
 
     private void ChangeHealth(int newHealth)
     {
-        Debug.Log("new health pre clamp " + newHealth);
         newHealth = Mathf.Clamp(newHealth, 0, maxHealth);
         currentHealth = newHealth;
 
