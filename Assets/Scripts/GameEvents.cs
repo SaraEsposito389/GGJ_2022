@@ -53,4 +53,10 @@ public class GameEvents : MonoBehaviour
         onChangeFemaleHealth?.Invoke(newValue);
     }
 
+    public event Action onCollectObject;
+    public void CollectObject()
+    {
+        onCollectObject?.Invoke();
+    }
+
 }

@@ -9,20 +9,34 @@ public class MinigameManager_2_1 : MonoBehaviour
     private GameObject spawningArea;
 
     [SerializeField]
-    private int numSpawnable = 20;
+    private int numBaseSpawnable = 20;
+    private int numSpawnable = 0;
+    private int level1NumSlippers = 0;
 
     [SerializeField]
     private GameObject spawnablePrefab;
 
-    public int score = 0;
+    private int score = 0;
 
     [SerializeField]
     private int minScoreToWin = 10;
 
+    [SerializeField]
+    private UnityEngine.UI.Text scoreText;
+
+    [SerializeField]
+    private IntValue numFemaleThrownSlippers;
+
+    [SerializeField]
+    private IntValue numMaleThrownSlippers;
+
     // Start is called before the first frame update
     void Start()
     {
+        level1NumSlippers = numFemaleThrownSlippers.GetValue() + numMaleThrownSlippers.GetValue();
+        numSpawnable = numBaseSpawnable + level1NumSlippers;
         SpawnPrefabs();
+        GameEvents.Instance.onCollectObject += IncreaseScore;
     }
 
     // Update is called once per frame
@@ -31,7 +45,7 @@ public class MinigameManager_2_1 : MonoBehaviour
         
     }
 
-    void SpawnPrefabs()
+    private void SpawnPrefabs()
     {
         for (int i = 0; i < numSpawnable; i++)
         {
@@ -41,16 +55,17 @@ public class MinigameManager_2_1 : MonoBehaviour
         }
     }
 
-    void IncreaseScore()
+    private void IncreaseScore()
     {
         score++;
-        if (score >= minScoreToWin || score == numSpawnable) // if with timer check also timer end
+        scoreText.text = "" + score;
+        if (score == numSpawnable) // if with timer check also timer end
         {
             EndMinigame();
         }
     }
 
-    void EndMinigame()
+    private void EndMinigame()
     {
         Debug.Log("End Minigame");
         // Dialog
