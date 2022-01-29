@@ -18,7 +18,8 @@ public class Bucket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currNumOfClips = numClips;
+        currNumOfClips = numClips-1;
+        GameEvents.Instance.onCollectObjectByTag += UpdateCurrNumOfClips;
     }
 
     // Update is called once per frame
@@ -27,15 +28,18 @@ public class Bucket : MonoBehaviour
         
     }
 
-    private void UpdateCurrNumOfClips()
+    private void UpdateCurrNumOfClips(string tag, GameObject obj)
     {
-        if (currNumOfClips != 0)
+        if (tag == "Clip")
         {
-            currNumOfClips--;
-        }
-        else
-        {
-            Destroy(gameObject, secBeforeDestroy);
+            if (currNumOfClips >= 1)
+            {
+                currNumOfClips--;
+            }
+            else
+            {
+                GameEvents.Instance.ChangeVisibilityBucket(false);
+            }
         }
     }
 
@@ -47,11 +51,11 @@ public class Bucket : MonoBehaviour
             GameEvents.Instance.CollectObjectByTag(this.tag, other.gameObject);
             Destroy(gameObject, secBeforeDestroy);
         }
-        else if (!isBucketToCollect && other.gameObject.CompareTag("Player"))
+        /*else if (!isBucketToCollect && other.gameObject.CompareTag("Player"))
         {
             // Get clip
             Debug.Log("Bucket dà clip");
             UpdateCurrNumOfClips();
-        }
+        }*/
     }
 }

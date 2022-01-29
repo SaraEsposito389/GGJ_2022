@@ -71,4 +71,10 @@ public class GameEvents : MonoBehaviour
         onChangeVisibilityBucket?.Invoke(visibility);
     }
 
+    public event Action onCanTakeClips;
+    public void CanTakeClips()
+    {
+        onCanTakeClips?.Invoke();
+    }
+
 }

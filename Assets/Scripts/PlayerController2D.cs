@@ -51,6 +51,7 @@ public class PlayerController2D : MonoBehaviour
     private bool isFlipped;
     private bool isBucketReady;
     private bool isClipReady;
+    private bool isClipAvailable;
     private GameObject bucketZone;
 
     // Start is called before the first frame update
@@ -72,6 +73,7 @@ public class PlayerController2D : MonoBehaviour
 
         isBucketReady = false;
         isClipReady = false;
+        isClipAvailable = false;
 
         if (gender == Gender.Male)
         {
@@ -83,6 +85,7 @@ public class PlayerController2D : MonoBehaviour
 
         ChangeHealth(maxHealth);
         GameEvents.Instance.onCollectObjectByTag += CollectObejct;
+        GameEvents.Instance.onCanTakeClips += ClipAvailable;
     }
 
     private void OnDestroy()
@@ -258,33 +261,40 @@ public class PlayerController2D : MonoBehaviour
 
     private void ManageInteraction()
     {
+        if (gender == Gender.Female && Input.GetButtonDown("InteractionFemale"))
+        {
+            takeOrLeaveBucketAndClips();
+        }
+        else if (gender == Gender.Male && Input.GetButtonDown("InteractionMale"))
+        {
+            takeOrLeaveBucketAndClips();
+        }
+    }
+
+    private void takeOrLeaveBucketAndClips()
+    {
+        // Leave bucket on bucketZone
         if (isBucketReady && !isClipReady && bucketZone)
         {
-            if (Input.GetButtonDown("InteractionFemale") || Input.GetButtonDown("InteractionMale"))
-            {
-                // Player leaves bucket
-                GameEvents.Instance.ChangeVisibilityBucket(true);
-                isBucketReady = false;
-            }
+            // Player leaves bucket
+            GameEvents.Instance.ChangeVisibilityBucket(true);
+            isBucketReady = false;
+            //isClipAvailable = true;
+            GameEvents.Instance.CanTakeClips();
         }
-
-        if (isClipReady)
+        else if (!isBucketReady && isClipAvailable && bucketZone)
+        { // Take clip from bucket
+            isClipReady = true;
+            isClipAvailable = false;
+            GameEvents.Instance.CollectObjectByTag("Clip", gameObject);
+        }
+        else if (!isClipAvailable && isClipReady && !bucketZone)
         {
             //if nel collider del panno
-
-            if (Input.GetButtonDown("InteractionFemale"))
-            {
-                Debug.Log("Gertrude mette la clip sui panni");
-                // TODO
-                isClipReady = false;
-            }
-
-            if (Input.GetButtonDown("InteractionMale"))
-            {
-                Debug.Log("Ignazio mette la clip sui panni");
-                // TODO
-                isClipReady = false;
-            }
+            Debug.Log(gameObject.name + " mette la clip sui panni");
+            // TODO
+            isClipReady = false;
+            isClipAvailable = true;
         }
     }
 
@@ -322,10 +332,11 @@ public class PlayerController2D : MonoBehaviour
             // Spawn bucket in capa
         }
 
-        if (tag == "Clip")
+        if (tag == "Clip" && GameObject.ReferenceEquals(gameObject, keeper))
         {
-            Debug.Log("Ho preso una clip");
-            isClipReady = true;
+            Debug.Log(gameObject.name + " ha preso una clip");
+            
+            //TODO
             // Spawn clip in capa
         }
     }
@@ -344,5 +355,10 @@ public class PlayerController2D : MonoBehaviour
         {
             bucketZone = null;
         }
+    }
+
+    private void ClipAvailable()
+    {
+        isClipAvailable = true;
     }
 }
