@@ -51,6 +51,7 @@ public class PlayerController2D : MonoBehaviour
     private bool isFlipped;
     private bool isBucketReady;
     private bool isClipReady;
+    private GameObject bucketZone;
 
     // Start is called before the first frame update
     void Start()
@@ -257,18 +258,13 @@ public class PlayerController2D : MonoBehaviour
 
     private void ManageInteraction()
     {
-        if (isBucketReady)
+        if (isBucketReady && !isClipReady && bucketZone)
         {
-            if (Input.GetButtonDown("InteractionFemale"))
+            if (Input.GetButtonDown("InteractionFemale") || Input.GetButtonDown("InteractionMale"))
             {
-                Debug.Log("Gertrude posa il bucket");
-                GameEvents.Instance.SpawnBucket();
-            }
-
-            if (Input.GetButtonDown("InteractionMale"))
-            {
-                Debug.Log("Ignazio posa il bucket");
-                GameEvents.Instance.SpawnBucket();
+                // Player leaves bucket
+                GameEvents.Instance.ChangeVisibilityBucket(true);
+                isBucketReady = false;
             }
         }
 
@@ -280,12 +276,14 @@ public class PlayerController2D : MonoBehaviour
             {
                 Debug.Log("Gertrude mette la clip sui panni");
                 // TODO
+                isClipReady = false;
             }
 
             if (Input.GetButtonDown("InteractionMale"))
             {
                 Debug.Log("Ignazio mette la clip sui panni");
                 // TODO
+                isClipReady = false;
             }
         }
     }
@@ -329,6 +327,22 @@ public class PlayerController2D : MonoBehaviour
             Debug.Log("Ho preso una clip");
             isClipReady = true;
             // Spawn clip in capa
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("BucketZone"))
+        {
+            bucketZone = other.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("BucketZone"))
+        {
+            bucketZone = null;
         }
     }
 }
