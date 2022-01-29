@@ -321,6 +321,7 @@ public class PlayerController2D : MonoBehaviour
         {
             isSwitchPressed = true;
             GameEvents.Instance.SwitchPressed();
+            Debug.Log("Switch pressed");
         }
     }
 
