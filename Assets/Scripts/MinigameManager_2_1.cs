@@ -9,17 +9,18 @@ public class MinigameManager_2_1 : MonoBehaviour
     private GameObject spawningArea;
 
     [SerializeField]
-    private int numBaseSpawnable = 20;
-    private int numSpawnable = 0;
-    private int level1NumSlippers = 0;
+    private int numBaseSpawnable = 10;
+    private int numMaleSpawnable = 0;
+    private int numFemaleSpawnable = 0;
+    private int totalNumSpawnable = 0;
 
     [SerializeField]
-    private GameObject spawnablePrefab;
+    private GameObject spawnableMalePrefab;
+
+    [SerializeField]
+    private GameObject spawnableFemalePrefab;
 
     private int score = 0;
-
-    [SerializeField]
-    private int minScoreToWin = 10;
 
     [SerializeField]
     private UnityEngine.UI.Text scoreText;
@@ -33,9 +34,14 @@ public class MinigameManager_2_1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level1NumSlippers = numFemaleThrownSlippers.GetValue() + numMaleThrownSlippers.GetValue();
-        numSpawnable = numBaseSpawnable + level1NumSlippers;
+        numMaleSpawnable = numBaseSpawnable + numMaleThrownSlippers.GetValue();
+        numFemaleSpawnable = numBaseSpawnable + numFemaleThrownSlippers.GetValue();
+        totalNumSpawnable = numMaleSpawnable + numFemaleSpawnable;
+
         SpawnPrefabs();
+
+        UpdateScoreText();
+
         GameEvents.Instance.onCollectObject += IncreaseScore;
     }
 
@@ -47,22 +53,36 @@ public class MinigameManager_2_1 : MonoBehaviour
 
     private void SpawnPrefabs()
     {
-        for (int i = 0; i < numSpawnable; i++)
+        for (int i = 0; i < numMaleSpawnable; i++)
         {
-            Vector2 pos = new Vector2(Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y / 2));
-            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
-            Instantiate(spawnablePrefab, pos, rotation);
+            SpawnSinglePrefab(spawnableMalePrefab);
         }
+        for (int i = 0; i < numFemaleSpawnable; i++)
+        {
+            SpawnSinglePrefab(spawnableFemalePrefab);
+        }
+    }
+
+    private void SpawnSinglePrefab(GameObject spawnableObject)
+    {
+        Vector2 pos = new Vector2(Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y / 2));
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
+        Instantiate(spawnableObject, pos, rotation);
     }
 
     private void IncreaseScore()
     {
         score++;
-        scoreText.text = "" + score;
-        if (score == numSpawnable) // if with timer check also timer end
+        UpdateScoreText();
+        if (score == totalNumSpawnable) // if with timer check also timer end
         {
             EndMinigame();
         }
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = score + "/" + totalNumSpawnable;
     }
 
     private void EndMinigame()
