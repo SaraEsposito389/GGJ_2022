@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 30137197}
   - component: {fileID: 30137199}
   - component: {fileID: 30137198}
+  - component: {fileID: 30137200}
   m_Layer: 5
   m_Name: Heart (4)
   m_TagString: Untagged
@@ -198,6 +199,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30137196}
   m_CullTransparentMesh: 1
+--- !u!95 &30137200
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30137196}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d561c15d25d8442b2db4b7d7315cc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &79292023
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +946,7 @@ GameObject:
   - component: {fileID: 759669103}
   - component: {fileID: 759669105}
   - component: {fileID: 759669104}
+  - component: {fileID: 759669106}
   m_Layer: 5
   m_Name: Heart (1)
   m_TagString: Untagged
@@ -990,6 +1011,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759669102}
   m_CullTransparentMesh: 1
+--- !u!95 &759669106
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759669102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d561c15d25d8442b2db4b7d7315cc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &899578836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1345,7 @@ GameObject:
   - component: {fileID: 1198808364}
   - component: {fileID: 1198808366}
   - component: {fileID: 1198808365}
+  - component: {fileID: 1198808367}
   m_Layer: 5
   m_Name: Heart (2)
   m_TagString: Untagged
@@ -1369,6 +1410,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198808363}
   m_CullTransparentMesh: 1
+--- !u!95 &1198808367
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198808363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d561c15d25d8442b2db4b7d7315cc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1240169492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1549,7 @@ GameObject:
   - component: {fileID: 1319610190}
   - component: {fileID: 1319610192}
   - component: {fileID: 1319610191}
+  - component: {fileID: 1319610193}
   m_Layer: 5
   m_Name: Heart (3)
   m_TagString: Untagged
@@ -1553,6 +1614,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319610189}
   m_CullTransparentMesh: 1
+--- !u!95 &1319610193
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319610189}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d561c15d25d8442b2db4b7d7315cc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1391243462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1644,7 @@ GameObject:
   - component: {fileID: 1391243463}
   - component: {fileID: 1391243465}
   - component: {fileID: 1391243464}
+  - component: {fileID: 1391243466}
   m_Layer: 5
   m_Name: Heart (5)
   m_TagString: Untagged
@@ -1628,6 +1709,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391243462}
   m_CullTransparentMesh: 1
+--- !u!95 &1391243466
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391243462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d561c15d25d8442b2db4b7d7315cc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1431883133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3905581877033643810, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
@@ -2184,6 +2284,7 @@ GameObject:
   - component: {fileID: 2066721806}
   - component: {fileID: 2066721808}
   - component: {fileID: 2066721807}
+  - component: {fileID: 2066721809}
   m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
@@ -2248,6 +2349,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066721805}
   m_CullTransparentMesh: 1
+--- !u!95 &2066721809
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066721805}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d561c15d25d8442b2db4b7d7315cc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2100009773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gertrude
       objectReference: {fileID: 0}
+    - target: {fileID: 1924066662515530356, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1924066662515530358, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -2458,6 +2582,10 @@ PrefabInstance:
       propertyPath: m_MaskInteraction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1924066662515530359, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
+      propertyPath: slipperBulletPrefab
+      value: 
+      objectReference: {fileID: 9137149108655067077, guid: e6c7f54ba06e5bf4394ffe087c4fe1b5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
 --- !u!1001 &3905581877658504227
@@ -2480,6 +2608,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1656844801}
     - target: {fileID: 3905581877033643808, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905581877033643808, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
+      propertyPath: immortalityWindow
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905581877033643808, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
       propertyPath: slipperBulletPrefab
       value: 
       objectReference: {fileID: 9137149108655067077, guid: 818a9b5a67af8834d9fb9d291d96877a, type: 3}
@@ -2497,7 +2633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3905581877033643814, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.58
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3905581877033643814, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
       propertyPath: m_LocalPosition.z
