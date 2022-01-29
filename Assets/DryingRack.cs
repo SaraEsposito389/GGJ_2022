@@ -9,6 +9,9 @@ public class DryingRack : MonoBehaviour
     private List<GameObject> freeSpawnPoints;
 
     [SerializeField]
+    private List<Sprite> spriteSheetList = new List<Sprite>();
+
+    [SerializeField]
     private GameObject sheetPrefab;
 
     [SerializeField]
@@ -54,6 +57,9 @@ public class DryingRack : MonoBehaviour
     private void SpawnSheet(GameObject spawnPoint)
     {
         GameObject sheet = Instantiate(sheetPrefab, spawnPoint.transform.position, Quaternion.identity);
+        sheet.GetComponent<SpriteRenderer>().sprite = spriteSheetList[Random.Range(0, spriteSheetList.Count)];
+        sheet.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+        sheet.transform.parent = gameObject.transform;
         StartCoroutine(FallingSheetCo(sheet, spawnPoint));
     }
 
