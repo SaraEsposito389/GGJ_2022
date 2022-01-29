@@ -23,6 +23,5 @@ public class CollectableSlipper : MonoBehaviour
             GameEvents.Instance.CollectObject();
             Destroy(gameObject);
         }
-            
     }
 }

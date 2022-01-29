@@ -42,6 +42,8 @@ public class PlayerController2D : MonoBehaviour
     private bool isImmortal;
     private bool isDead;
     private bool isFlipped;
+    private bool isBucketReady;
+    private bool isClipReady;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,9 @@ public class PlayerController2D : MonoBehaviour
         isDead = false;
         isFlipped = false;
 
+        isBucketReady = false;
+        isClipReady = false;
+
         if (gender == Gender.Male)
         {
             GameEvents.Instance.onDestroyMaleSlipperBullet += SlipperBulletDestroyed;
@@ -68,6 +73,7 @@ public class PlayerController2D : MonoBehaviour
         }
 
         ChangeHealth(maxHealth);
+        GameEvents.Instance.onCollectObjectByTag += CollectObejct;
     }
 
     private void OnDestroy()
@@ -153,6 +159,7 @@ public class PlayerController2D : MonoBehaviour
         if (!isDead)
         {
             ManageAttack();
+            ManageInteraction();
         }
     }
 
@@ -234,6 +241,41 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
+    private void ManageInteraction()
+    {
+        if (isBucketReady)
+        {
+            if (Input.GetButtonDown("InteractionFemale"))
+            {
+                Debug.Log("Gertrude posa il bucket");
+                GameEvents.Instance.SpawnBucket();
+            }
+
+            if (Input.GetButtonDown("InteractionMale"))
+            {
+                Debug.Log("Ignazio posa il bucket");
+                GameEvents.Instance.SpawnBucket();
+            }
+        }
+
+        if (isClipReady)
+        {
+            //if nel collider del panno
+
+            if (Input.GetButtonDown("InteractionFemale"))
+            {
+                Debug.Log("Gertrude mette la clip sui panni");
+                // TODO
+            }
+
+            if (Input.GetButtonDown("InteractionMale"))
+            {
+                Debug.Log("Ignazio mette la clip sui panni");
+                // TODO
+            }
+        }
+    }
+
     private void SpawnSlippetBullet()
     {
         GameObject go = Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
@@ -257,5 +299,22 @@ public class PlayerController2D : MonoBehaviour
     public Gender GetGender()
     {
         return gender;
+    }
+
+    private void CollectObejct(string tag, GameObject keeper)
+    {
+        if (tag == "Bucket" && !isBucketReady && GameObject.ReferenceEquals(gameObject, keeper))
+        {
+            Debug.Log("Ho preso un bucket");
+            isBucketReady = true;
+            // Spawn bucket in capa
+        }
+
+        if (tag == "Clip")
+        {
+            Debug.Log("Ho preso una clip");
+            isClipReady = true;
+            // Spawn clip in capa
+        }
     }
 }

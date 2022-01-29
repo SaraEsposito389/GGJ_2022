@@ -59,4 +59,16 @@ public class GameEvents : MonoBehaviour
         onCollectObject?.Invoke();
     }
 
+    public event Action<string, GameObject> onCollectObjectByTag;
+    public void CollectObjectByTag(string tagObj, GameObject keeper)
+    {
+        onCollectObjectByTag?.Invoke(tagObj, keeper);
+    }
+
+    public event Action onSpawnBucket;
+    public void SpawnBucket()
+    {
+        onSpawnBucket?.Invoke();
+    }
+
 }

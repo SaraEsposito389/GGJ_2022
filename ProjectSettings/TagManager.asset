@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Slipper
+  - Bucket
+  - Clip
   layers:
   - Default
   - TransparentFX
