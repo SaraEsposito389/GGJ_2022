@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gertrude
       objectReference: {fileID: 0}
+    - target: {fileID: 1924066662515530356, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
 --- !u!1001 &1575450185
