@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gender: 0
-  speed: 10
+  speed: 6.5
   canAttack: 0
   laughClip: {fileID: 8300000, guid: 7f94dde7bf3d154488e691dfb6f06b41, type: 3}
   damageClip: {fileID: 8300000, guid: 2d95493f82921d5498eab624080fceb2, type: 3}
@@ -146,6 +146,7 @@ MonoBehaviour:
   sr: {fileID: 6968203579174366764}
   heldObjectBaloon: {fileID: 3068551473625591308}
   heldObject: {fileID: 1232077963483855082}
+  clipPrefab: {fileID: 0}
 --- !u!50 &1924066662515530352
 Rigidbody2D:
   serializedVersion: 4
