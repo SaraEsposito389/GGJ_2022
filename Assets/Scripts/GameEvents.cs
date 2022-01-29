@@ -65,10 +65,10 @@ public class GameEvents : MonoBehaviour
         onCollectObjectByTag?.Invoke(tagObj, keeper);
     }
 
-    public event Action onSpawnBucket;
-    public void SpawnBucket()
+    public event Action<bool> onChangeVisibilityBucket;
+    public void ChangeVisibilityBucket(bool visibility)
     {
-        onSpawnBucket?.Invoke();
+        onChangeVisibilityBucket?.Invoke(visibility);
     }
 
 }

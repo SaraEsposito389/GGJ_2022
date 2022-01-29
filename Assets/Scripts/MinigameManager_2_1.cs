@@ -9,6 +9,9 @@ public class MinigameManager_2_1 : MonoBehaviour
     private GameObject spawningArea;
 
     [SerializeField]
+    private GameObject slippersPile;
+
+    [SerializeField]
     private int numBaseSpawnable = 10;
     private int numMaleSpawnable = 0;
     private int numFemaleSpawnable = 0;
@@ -67,7 +70,8 @@ public class MinigameManager_2_1 : MonoBehaviour
     {
         Vector2 pos = new Vector2(Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y / 2));
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
-        Instantiate(spawnableObject, pos, rotation);
+        var newObj = Instantiate(spawnableObject, pos, rotation);
+        newObj.transform.parent = slippersPile.transform;
     }
 
     private void IncreaseScore()
