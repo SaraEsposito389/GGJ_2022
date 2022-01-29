@@ -65,6 +65,12 @@ public class GameEvents : MonoBehaviour
         onCollectObjectByTag?.Invoke(tagObj, keeper);
     }
 
+    public event Action<GameObject, GameObject> onCollectGameObject;
+    public void CollectGameObject(GameObject collectedObj, GameObject keeper)
+    {
+        onCollectGameObject?.Invoke(collectedObj, keeper);
+    }
+
     public event Action<bool> onChangeVisibilityBucket;
     public void ChangeVisibilityBucket(bool visibility)
     {

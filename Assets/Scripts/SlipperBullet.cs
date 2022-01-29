@@ -64,7 +64,7 @@ public class SlipperBullet : MonoBehaviour
         {
             DestroyBullet();
         }
-        else if (other.gameObject.CompareTag("Wall"))
+        else if (other.gameObject.CompareTag("Wall") && other.isTrigger)
         {
             DestroyBullet();
         }

@@ -50,6 +50,9 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     private SpriteRenderer heldObject;
 
+    [SerializeField]
+    private GameObject clipPrefab;
+
     private bool isSlipperReady;
     private bool isImmortal;
     private bool isDead;
@@ -95,7 +98,7 @@ public class PlayerController2D : MonoBehaviour
         }
 
         ChangeHealth(maxHealth);
-        GameEvents.Instance.onCollectObjectByTag += CollectObject;
+        GameEvents.Instance.onCollectGameObject += CollectObject;
         GameEvents.Instance.onCanTakeClips += ClipAvailable;
     }
 
@@ -109,6 +112,9 @@ public class PlayerController2D : MonoBehaviour
         {
             GameEvents.Instance.onDestroyFemaleSlipperBullet -= SlipperBulletDestroyed;
         }
+
+        GameEvents.Instance.onCollectGameObject -= CollectObject;
+        GameEvents.Instance.onCanTakeClips -= ClipAvailable;
     }
 
     // Update is called once per frame
@@ -254,9 +260,7 @@ public class PlayerController2D : MonoBehaviour
                 if (Input.GetButtonDown("SlipperFemale"))
                 {
                     SpawnSlippetBullet();
-                    Debug.Log("Gertrude attacks with direction " + savedMovement);
-
-                    
+                    Debug.Log("Gertrude attacks with direction " + savedMovement);                    
                 }
             }
             else
@@ -292,12 +296,19 @@ public class PlayerController2D : MonoBehaviour
             isBucketReady = false;
             //isClipAvailable = true;
             GameEvents.Instance.CanTakeClips();
+            heldObjectBaloon.SetActive(false);
         }
         else if (!isBucketReady && isClipAvailable && bucketZone)
         { // Take clip from bucket
             isClipReady = true;
             isClipAvailable = false;
             GameEvents.Instance.CollectObjectByTag("Clip", gameObject);
+
+            if (clipPrefab)
+            {
+                heldObject.sprite = clipPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
+                heldObjectBaloon.SetActive(true);
+            }
         }
         else if (!isClipAvailable && isClipReady && !bucketZone)
         {
@@ -338,21 +349,23 @@ public class PlayerController2D : MonoBehaviour
         return gender;
     }
 
-    private void CollectObject(string tag, GameObject keeper)
+    private void CollectObject(GameObject collectedObj, GameObject keeper)
     {
-        if (tag == "Bucket" && !isBucketReady && GameObject.ReferenceEquals(gameObject, keeper))
+        if (collectedObj.CompareTag("Bucket") && !isBucketReady && GameObject.ReferenceEquals(gameObject, keeper))
         {
             Debug.Log("Ho preso un bucket");
             isBucketReady = true;
-            // Spawn bucket in capa
+            heldObject.sprite = collectedObj.GetComponentInChildren<SpriteRenderer>().sprite;
+            heldObjectBaloon.SetActive(true);
         }
 
-        if (tag == "Clip" && GameObject.ReferenceEquals(gameObject, keeper))
+        if (collectedObj.CompareTag("Clip") && GameObject.ReferenceEquals(gameObject, keeper))
         {
             Debug.Log(gameObject.name + " ha preso una clip");
-            
+
             //TODO
-            // Spawn clip in capa
+            heldObject.sprite = collectedObj.GetComponentInChildren<SpriteRenderer>().sprite;
+            heldObjectBaloon.SetActive(true);
         }
     }
 
