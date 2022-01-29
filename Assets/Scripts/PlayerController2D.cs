@@ -15,13 +15,15 @@ public class PlayerController2D : MonoBehaviour
 
     [SerializeField]
     private float speed = 8;
+    [SerializeField]
+    private bool canAttack = false;
 
     private Vector3 changeMovement;
     private Vector3 savedMovement;
 
     [SerializeField]
     private int maxHealth = 5;
-
+    
     private int currentHealth;
     private Rigidbody2D rb;
     private Animator anim;
@@ -218,7 +220,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void ManageAttack()
     {
-        if (isSlipperReady)
+        if (isSlipperReady && canAttack)
         {
             if (gender == Gender.Female)
             {
