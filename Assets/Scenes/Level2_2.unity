@@ -433,6 +433,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3905581877033643808, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
+      propertyPath: clipPrefab
+      value: 
+      objectReference: {fileID: 8118058275492224067, guid: 4cf70a48af811784aa3d6aeecbe521f1, type: 3}
     - target: {fileID: 3905581877033643810, guid: 5823ec4651a0dd74284024f6939f7f97, type: 3}
       propertyPath: m_Name
       value: Ignazio
@@ -603,6 +607,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1924066662515530359, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
+      propertyPath: clipPrefab
+      value: 
+      objectReference: {fileID: 8118058275492224067, guid: 4cf70a48af811784aa3d6aeecbe521f1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450a5d970a5a514449fd70c6861dbc1a, type: 3}
 --- !u!1 &1323735408
