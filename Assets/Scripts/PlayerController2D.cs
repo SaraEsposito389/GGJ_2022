@@ -17,6 +17,10 @@ public class PlayerController2D : MonoBehaviour
     private float speed = 8;
     [SerializeField]
     private bool canAttack = false;
+    [SerializeField]
+    private AudioClip laughClip;
+    [SerializeField]
+    private AudioClip damageClip;
 
     private Vector3 changeMovement;
     private Vector3 savedMovement;
@@ -27,6 +31,7 @@ public class PlayerController2D : MonoBehaviour
     private int currentHealth;
     private Rigidbody2D rb;
     private Animator anim;
+    private AudioSource audioSource;
 
     [SerializeField]
     private float immortalityWindow = 0.75f;
@@ -52,6 +57,7 @@ public class PlayerController2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         savedMovement = Vector3.up;
         anim.SetFloat("verticalMovement", savedMovement.y);
@@ -116,6 +122,7 @@ public class PlayerController2D : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        audioSource.PlayOneShot(damageClip);
         anim.SetTrigger("damageTrigger");
         StartCoroutine(ImmortalityWindowCo());
         int newHealth = currentHealth - damage;
@@ -218,6 +225,11 @@ public class PlayerController2D : MonoBehaviour
         rb.MovePosition(transform.position + changeMovement * speed * Time.deltaTime);
     }
 
+    public void Laugh()
+    {
+        audioSource.PlayOneShot(laughClip);
+    }
+
     private void ManageAttack()
     {
         if (isSlipperReady && canAttack)
@@ -282,7 +294,7 @@ public class PlayerController2D : MonoBehaviour
     {
         GameObject go = Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
         SlipperBullet sb = go.GetComponent<SlipperBullet>();
-        sb.SetSlipperOwner(gender);
+        sb.SetSlipperOwner(this);
         sb.SetDirection(savedMovement);
 
         if (numThrownSlippers != null)

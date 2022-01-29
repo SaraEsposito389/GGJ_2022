@@ -12,7 +12,16 @@ public class SlipperBullet : MonoBehaviour
     [SerializeField]
     private int damage = 1;
 
-    private Gender slipperOwner;
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip throwSFX;
+    [SerializeField]
+    private AudioClip impactSFX;
+
+    private PlayerController2D slipperOwnerPc;
+
+    private Gender slipperOwnerGender;
 
     private Vector3 direction;
     private float rotationCorrection = -90;
@@ -21,6 +30,10 @@ public class SlipperBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
+        audioSource.clip = throwSFX;
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -39,9 +52,12 @@ public class SlipperBullet : MonoBehaviour
         {
 
             PlayerController2D otherPc = other.GetComponent<PlayerController2D>();
-            if (otherPc && otherPc.GetGender() != slipperOwner && !otherPc.GetImmortalStatus()) 
+            if (otherPc && otherPc.GetGender() != slipperOwnerGender && !otherPc.GetImmortalStatus()) 
             {
                 otherPc.TakeDamage(damage);
+
+                //slipperOwnerPc.Laugh();
+
                 DestroyBullet();
             }
         } else if (other.gameObject.CompareTag("Object") && other.isTrigger)
@@ -56,10 +72,10 @@ public class SlipperBullet : MonoBehaviour
 
     private void DestroyBullet()
     {
-        if (slipperOwner == Gender.Male)
+        if (slipperOwnerGender == Gender.Male)
         {
             GameEvents.Instance.DestroyMaleSlipperBullet();
-        } else if (slipperOwner == Gender.Female)
+        } else if (slipperOwnerGender == Gender.Female)
         {
             GameEvents.Instance.DestroyFemaleSlipperBullet();
         }
@@ -67,9 +83,10 @@ public class SlipperBullet : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void SetSlipperOwner(Gender newSlipperOwner)
+    public void SetSlipperOwner(PlayerController2D newSlipperOwner)
     {
-        slipperOwner = newSlipperOwner;
+        slipperOwnerPc = newSlipperOwner;
+        slipperOwnerGender = newSlipperOwner.GetGender();
     }
 
     public void SetDirection(Vector3 newDirection)
