@@ -9,6 +9,9 @@ TagManager:
   - Bucket
   - Clip
   - Object
+  - BucketZone
+  - Switch
+  - Gate
   layers:
   - Default
   - TransparentFX
