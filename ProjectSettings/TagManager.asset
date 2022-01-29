@@ -8,6 +8,7 @@ TagManager:
   - Slipper
   - Bucket
   - Clip
+  - Object
   layers:
   - Default
   - TransparentFX

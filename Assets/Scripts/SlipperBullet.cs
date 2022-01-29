@@ -35,7 +35,7 @@ public class SlipperBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && other.isTrigger)
         {
 
             PlayerController2D otherPc = other.GetComponent<PlayerController2D>();
@@ -44,6 +44,9 @@ public class SlipperBullet : MonoBehaviour
                 otherPc.TakeDamage(damage);
                 DestroyBullet();
             }
+        } else if (other.gameObject.CompareTag("Object") && other.isTrigger)
+        {
+            DestroyBullet();
         }
         else if (other.gameObject.CompareTag("Wall"))
         {
