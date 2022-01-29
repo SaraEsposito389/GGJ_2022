@@ -8,13 +8,15 @@ public class HealthManagerUI : MonoBehaviour
     [SerializeField]
     private Gender playerGender;
 
-    private Text textField;
+    [SerializeField]
+    private List<GameObject> heartsList;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        textField = GetComponent<Text>();
-
         if (playerGender == Gender.Female)
         {
             GameEvents.Instance.onChangeFemaleHealth += UpdateUI;
@@ -22,6 +24,7 @@ public class HealthManagerUI : MonoBehaviour
         {
             GameEvents.Instance.onChangeMaleHealth += UpdateUI;
         }
+
     }
 
     private void OnDestroy()
@@ -39,6 +42,15 @@ public class HealthManagerUI : MonoBehaviour
     // Update is called once per frame
     void UpdateUI(int newHealthValue)
     {
-        textField.text = "Vite Rimanenti: " + newHealthValue;
+        for (int i = 0; i < heartsList.Count; i++)
+        {
+            if (i < newHealthValue)
+            {
+                heartsList[i].SetActive(true);
+            } else
+            {
+                heartsList[i].SetActive(false);
+            }
+        }
     }
 }

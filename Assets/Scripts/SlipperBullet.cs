@@ -15,7 +15,7 @@ public class SlipperBullet : MonoBehaviour
     private Gender slipperOwner;
 
     private Vector3 direction;
-    private float rotationCorrection = 90;
+    private float rotationCorrection = -90;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,7 @@ public class SlipperBullet : MonoBehaviour
         {
 
             PlayerController2D otherPc = other.GetComponent<PlayerController2D>();
-            if (otherPc && otherPc.GetGender() != slipperOwner)
+            if (otherPc && otherPc.GetGender() != slipperOwner && !otherPc.GetImmortalStatus()) 
             {
                 otherPc.TakeDamage(damage);
                 DestroyBullet();

@@ -24,6 +24,10 @@ public class PlayerController2D : MonoBehaviour
 
     private int currentHealth;
     private Rigidbody2D rb;
+    private Animator anim;
+
+    [SerializeField]
+    private float immortalityWindow = 0.75f;
 
     [SerializeField]
     private GameObject slipperBulletPrefab;
@@ -31,20 +35,29 @@ public class PlayerController2D : MonoBehaviour
     private GameObject slipperFireGameObject;
     [SerializeField]
     private IntValue numThrownSlippers = null;
+    [SerializeField]
+    private SpriteRenderer sr;
 
     private bool isSlipperReady;
+    private bool isImmortal;
     private bool isDead;
+    private bool isFlipped;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        ChangeHealth(maxHealth);
+        anim = GetComponent<Animator>();
 
         savedMovement = Vector3.up;
+        anim.SetFloat("verticalMovement", savedMovement.y);
+        anim.SetFloat("horizontalMovement", savedMovement.x);
+        anim.SetBool("isMoving", false);
+        anim.ResetTrigger("damageTrigger");
+
         isSlipperReady = true;
         isDead = false;
+        isFlipped = false;
 
         if (gender == Gender.Male)
         {
@@ -53,6 +66,8 @@ public class PlayerController2D : MonoBehaviour
         {
             GameEvents.Instance.onDestroyFemaleSlipperBullet += SlipperBulletDestroyed;
         }
+
+        ChangeHealth(maxHealth);
     }
 
     private void OnDestroy()
@@ -87,12 +102,14 @@ public class PlayerController2D : MonoBehaviour
         if (currentHealth == 0 && !isDead)
         {
             isDead = true;
-            Debug.Log(gameObject.name + ": sono morto" );
+            anim.SetBool("isDead", true);
         }
     }
 
     public void TakeDamage(int damage)
     {
+        anim.SetTrigger("damageTrigger");
+        StartCoroutine(ImmortalityWindowCo());
         int newHealth = currentHealth - damage;
         ChangeHealth(newHealth);
     }
@@ -101,6 +118,18 @@ public class PlayerController2D : MonoBehaviour
     {
         int newHealth = currentHealth + healAmount;
         ChangeHealth(newHealth);
+    }
+
+    private IEnumerator ImmortalityWindowCo()
+    {
+        isImmortal = true;
+        yield return new WaitForSeconds(immortalityWindow);
+        isImmortal = false;
+    }
+
+    public bool GetImmortalStatus()
+    {
+        return isImmortal;
     }
 
     private void ChangeHealth(int newHealth)
@@ -116,7 +145,7 @@ public class PlayerController2D : MonoBehaviour
         {
             GameEvents.Instance.ChangeFemaleHealth(currentHealth);
         }
-        
+
     }
 
     private void InputHandle()
@@ -151,15 +180,33 @@ public class PlayerController2D : MonoBehaviour
         if (changeMovement != Vector3.zero)
         {
             savedMovement = changeMovement.normalized;
+            anim.SetFloat("verticalMovement", savedMovement.y);
+            anim.SetFloat("horizontalMovement", savedMovement.x);
+            anim.SetBool("isMoving", true);
+
+            if (changeMovement.x > 0f && !isFlipped)
+            {
+                Flip();
+            } else if (changeMovement.x < 0f && isFlipped)
+            {
+                Flip();
+            }
+        } else
+        {
+            anim.SetBool("isMoving", false);
         }
+    }
+
+    private void Flip()
+    {
+        isFlipped = !isFlipped;
+        sr.flipX = isFlipped;
     }
 
     public void MovePlayer()
     {
         changeMovement.Normalize();
         rb.MovePosition(transform.position + changeMovement * speed * Time.deltaTime);
-
-        //Play Animation
     }
 
     private void ManageAttack()
