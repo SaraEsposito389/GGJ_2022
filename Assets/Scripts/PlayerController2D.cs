@@ -45,6 +45,11 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sr;
 
+    [SerializeField]
+    private GameObject heldObjectBaloon;
+    [SerializeField]
+    private SpriteRenderer heldObject;
+
     private bool isSlipperReady;
     private bool isImmortal;
     private bool isDead;
@@ -83,8 +88,14 @@ public class PlayerController2D : MonoBehaviour
             GameEvents.Instance.onDestroyFemaleSlipperBullet += SlipperBulletDestroyed;
         }
 
+        if (canAttack && isSlipperReady)
+        {
+            heldObjectBaloon.SetActive(true);
+            heldObject.sprite = slipperBulletPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
+        }
+
         ChangeHealth(maxHealth);
-        GameEvents.Instance.onCollectObjectByTag += CollectObejct;
+        GameEvents.Instance.onCollectObjectByTag += CollectObject;
         GameEvents.Instance.onCanTakeClips += ClipAvailable;
     }
 
@@ -300,6 +311,8 @@ public class PlayerController2D : MonoBehaviour
 
     private void SpawnSlippetBullet()
     {
+        heldObjectBaloon.SetActive(false);
+
         GameObject go = Instantiate(slipperBulletPrefab, slipperFireGameObject.transform.position, Quaternion.identity);
         SlipperBullet sb = go.GetComponent<SlipperBullet>();
         sb.SetSlipperOwner(this);
@@ -316,6 +329,8 @@ public class PlayerController2D : MonoBehaviour
     private void SlipperBulletDestroyed()
     {
         isSlipperReady = true;
+        heldObject.sprite = slipperBulletPrefab.GetComponentInChildren<SpriteRenderer>().sprite;
+        heldObjectBaloon.SetActive(true);
     }
 
     public Gender GetGender()
@@ -323,7 +338,7 @@ public class PlayerController2D : MonoBehaviour
         return gender;
     }
 
-    private void CollectObejct(string tag, GameObject keeper)
+    private void CollectObject(string tag, GameObject keeper)
     {
         if (tag == "Bucket" && !isBucketReady && GameObject.ReferenceEquals(gameObject, keeper))
         {
