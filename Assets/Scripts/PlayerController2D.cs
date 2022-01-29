@@ -60,6 +60,9 @@ public class PlayerController2D : MonoBehaviour
     private bool isBucketReady;
     private bool isClipReady;
     private bool isClipAvailable;
+    private bool isInSwitchArea;
+    private bool isSwitchPressed;
+
     private GameObject bucketZone;
 
     // Start is called before the first frame update
@@ -100,6 +103,7 @@ public class PlayerController2D : MonoBehaviour
         ChangeHealth(maxHealth);
         GameEvents.Instance.onCollectGameObject += CollectObject;
         GameEvents.Instance.onCanTakeClips += ClipAvailable;
+        GameEvents.Instance.onSwitchPressedEnd += SwitchOff;
     }
 
     private void OnDestroy()
@@ -278,15 +282,17 @@ public class PlayerController2D : MonoBehaviour
     {
         if (gender == Gender.Female && Input.GetButtonDown("InteractionFemale"))
         {
-            takeOrLeaveBucketAndClips();
+            TakeOrLeaveBucketAndClips();
+            ManageSwitch();
         }
         else if (gender == Gender.Male && Input.GetButtonDown("InteractionMale"))
         {
-            takeOrLeaveBucketAndClips();
+            TakeOrLeaveBucketAndClips();
+            ManageSwitch();
         }
     }
 
-    private void takeOrLeaveBucketAndClips()
+    private void TakeOrLeaveBucketAndClips()
     {
         // Leave bucket on bucketZone
         if (isBucketReady && !isClipReady && bucketZone)
@@ -317,6 +323,16 @@ public class PlayerController2D : MonoBehaviour
             // TODO
             isClipReady = false;
             isClipAvailable = true;
+        }
+    }
+
+    private void ManageSwitch()
+    {
+        if (isInSwitchArea & !isSwitchPressed)
+        {
+            isSwitchPressed = true;
+            GameEvents.Instance.SwitchPressed();
+            Debug.Log("Switch pressed");
         }
     }
 
@@ -375,6 +391,10 @@ public class PlayerController2D : MonoBehaviour
         {
             bucketZone = other.gameObject;
         }
+        else if (other.gameObject.CompareTag("Switch"))
+        {
+            isInSwitchArea = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -383,10 +403,19 @@ public class PlayerController2D : MonoBehaviour
         {
             bucketZone = null;
         }
+        else if (other.gameObject.CompareTag("Switch"))
+        {
+            isInSwitchArea = false;
+        }
     }
 
     private void ClipAvailable()
     {
         isClipAvailable = true;
+    }
+
+    private void SwitchOff()
+    {
+        isSwitchPressed = false;
     }
 }

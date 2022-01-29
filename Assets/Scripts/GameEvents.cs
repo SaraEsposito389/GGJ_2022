@@ -83,4 +83,15 @@ public class GameEvents : MonoBehaviour
         onCanTakeClips?.Invoke();
     }
 
+    public event Action onSwitchPressed;
+    public void SwitchPressed()
+    {
+        onSwitchPressed?.Invoke();
+    }
+
+    public event Action onSwitchPressedEnd;
+    public void SwitchPressedEnd()
+    {
+        onSwitchPressedEnd?.Invoke();
+    }
 }
