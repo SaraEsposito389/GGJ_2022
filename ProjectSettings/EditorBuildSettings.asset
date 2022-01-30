@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/CINE_Intro_Level2_1.unity
     guid: f04fd63124b4e5149a336292ce77f0e6
   - enabled: 1
+    path: Assets/Scenes/CINE_Intro_Level2_2.unity
+    guid: 546f2867e0da0a54bb52541e38177b14
+  - enabled: 1
+    path: Assets/Scenes/CINE_Intro_Level2_3.unity
+    guid: ad15408389c1401428b82fc0ce07f6ac
+  - enabled: 1
     path: Assets/Scenes/CINE_GeltrudeEnding.unity
     guid: eb59bef1826d26a44918a17086b5d0bb
   - enabled: 1
