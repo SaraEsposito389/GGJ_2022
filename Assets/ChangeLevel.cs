@@ -28,7 +28,7 @@ public class ChangeLevel : MonoBehaviour
         
     }
 
-    private void LoadNewLevel()
+    public void LoadNewLevel()
     {
         StartCoroutine(LoadLevelCo());
     }
