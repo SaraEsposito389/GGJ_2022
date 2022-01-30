@@ -394,6 +394,7 @@ public class PlayerController2D : MonoBehaviour
         else if (other.gameObject.CompareTag("Switch"))
         {
             isInSwitchArea = true;
+            Debug.Log(gameObject.name + " is in SwitchZone");
         }
     }
 
