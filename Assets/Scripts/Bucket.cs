@@ -20,13 +20,15 @@ public class Bucket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currNumOfClips = numClips-1;
-        GameEvents.Instance.onCollectGameObject += UpdateCurrNumOfClips;
+        currNumOfClips = numClips -1;
+        GameEvents.Instance.onCollectObjectByTag += UpdateCurrNumOfClips;
+        GameEvents.Instance.onDropNewBucket += IncreaseNumClips;
     }
 
     private void OnDestroy()
     {
-        GameEvents.Instance.onCollectGameObject -= UpdateCurrNumOfClips;
+        GameEvents.Instance.onCollectObjectByTag -= UpdateCurrNumOfClips;
+        GameEvents.Instance.onDropNewBucket -= IncreaseNumClips;
     }
 
     // Update is called once per frame
@@ -35,10 +37,15 @@ public class Bucket : MonoBehaviour
         
     }
 
-
-    private void UpdateCurrNumOfClips(GameObject gameObject, GameObject obj)
+    private void IncreaseNumClips()
     {
-        if (gameObject.CompareTag("Clip"))
+        currNumOfClips += numClips -1;
+    }
+
+
+    private void UpdateCurrNumOfClips(string tag, GameObject obj)
+    {
+        if (tag == "Clip")
         {
             if (currNumOfClips >= 1)
             {
@@ -57,7 +64,7 @@ public class Bucket : MonoBehaviour
         {
             Debug.Log(other.name + " takes " + this.tag);
             GameEvents.Instance.CollectGameObject(this.gameObject, other.gameObject);
-            Destroy(gameObject, secBeforeDestroy);
+            // Destroy(gameObject, secBeforeDestroy);
         }
         /*else if (!isBucketToCollect && other.gameObject.CompareTag("Player"))
         {

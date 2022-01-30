@@ -303,7 +303,7 @@ public class PlayerController2D : MonoBehaviour
             //isClipAvailable = true;
             GameEvents.Instance.CanTakeClips();
             heldObjectBaloon.SetActive(false);
-        }
+        } 
         else if (!isBucketReady && isClipAvailable && bucketZone)
         { // Take clip from bucket
             isClipReady = true;
@@ -328,7 +328,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void ManageSwitch()
     {
-        if (isInSwitchArea & !isSwitchPressed)
+        if (isInSwitchArea)
         {
             isSwitchPressed = true;
             GameEvents.Instance.SwitchPressed();
@@ -367,21 +367,25 @@ public class PlayerController2D : MonoBehaviour
 
     private void CollectObject(GameObject collectedObj, GameObject keeper)
     {
-        if (collectedObj.CompareTag("Bucket") && !isBucketReady && GameObject.ReferenceEquals(gameObject, keeper))
+        if (!heldObjectBaloon.activeInHierarchy)
         {
-            Debug.Log("Ho preso un bucket");
-            isBucketReady = true;
-            heldObject.sprite = collectedObj.GetComponentInChildren<SpriteRenderer>().sprite;
-            heldObjectBaloon.SetActive(true);
-        }
+            if (collectedObj.CompareTag("Bucket") && !isBucketReady && GameObject.ReferenceEquals(gameObject, keeper))
+            {
+                Debug.Log("Ho preso un bucket");
+                isBucketReady = true;
+                heldObject.sprite = collectedObj.GetComponentInChildren<SpriteRenderer>().sprite;
+                heldObjectBaloon.SetActive(true);
+                Destroy(collectedObj);
+            }
 
-        if (collectedObj.CompareTag("Clip") && GameObject.ReferenceEquals(gameObject, keeper))
-        {
-            Debug.Log(gameObject.name + " ha preso una clip");
+            if (collectedObj.CompareTag("Clip") && GameObject.ReferenceEquals(gameObject, keeper))
+            {
+                Debug.Log(gameObject.name + " ha preso una clip");
 
-            //TODO
-            heldObject.sprite = collectedObj.GetComponentInChildren<SpriteRenderer>().sprite;
-            heldObjectBaloon.SetActive(true);
+                //TODO
+                heldObject.sprite = collectedObj.GetComponentInChildren<SpriteRenderer>().sprite;
+                heldObjectBaloon.SetActive(true);
+            }
         }
     }
 
