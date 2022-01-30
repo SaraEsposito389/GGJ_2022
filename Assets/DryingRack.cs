@@ -25,9 +25,17 @@ public class DryingRack : MonoBehaviour
     [SerializeField]
     private GameObject clipPrefab;
 
+    [SerializeField]
+    private AudioClip spawnSound;
+    [SerializeField]
+    private AudioClip fallSound;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         freeSpawnPoints = new List<GameObject>();
         occupiedSpawnPoints = new List<GameObject>();
         foreach (GameObject obj in spawnPoints)
@@ -39,6 +47,11 @@ public class DryingRack : MonoBehaviour
 
         GameEvents.Instance.onTryToClipSheet += SpawnClip;
         StartCoroutine(SpawnCo());
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.Instance.onTryToClipSheet -= SpawnClip;
     }
 
     // Update is called once per frame
@@ -87,6 +100,9 @@ public class DryingRack : MonoBehaviour
         sheet.GetComponent<SpriteRenderer>().sprite = spriteSheetList[Random.Range(0, spriteSheetList.Count)];
         sheet.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
         sheet.transform.parent = gameObject.transform;
+
+        audioSource.PlayOneShot(spawnSound);
+
         StartCoroutine(FallingSheetCo(sheet, spawnPoint));
     }
 
@@ -97,6 +113,8 @@ public class DryingRack : MonoBehaviour
         {
             Rigidbody2D rbSheet = sheet.GetComponent<Rigidbody2D>();
             rbSheet.gravityScale = 1;
+
+            
 
             Destroy(sheet, 0.5f);
             yield return new WaitForSeconds(1.0f);

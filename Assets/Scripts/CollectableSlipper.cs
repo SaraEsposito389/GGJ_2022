@@ -5,10 +5,15 @@ using UnityEngine;
 public class CollectableSlipper : MonoBehaviour
 {
     private bool collected;
+    [SerializeField]
+    private AudioClip collectSFX;
+
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         collected = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,11 +26,15 @@ public class CollectableSlipper : MonoBehaviour
     {
         if (!collected)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player") && !other.isTrigger)
             {
                 collected = true;
+                audioSource.PlayOneShot(collectSFX);
                 GameEvents.Instance.CollectObject();
-                Destroy(gameObject);
+
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+                Destroy(gameObject, 1.5f);
             }
         }
     }
