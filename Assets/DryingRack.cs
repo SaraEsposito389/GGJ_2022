@@ -7,6 +7,7 @@ public class DryingRack : MonoBehaviour
     [SerializeField]
     private List<GameObject> spawnPoints;
     private List<GameObject> freeSpawnPoints;
+    private List<GameObject> occupiedSpawnPoints;
 
     [SerializeField]
     private List<Sprite> spriteSheetList = new List<Sprite>();
@@ -21,10 +22,14 @@ public class DryingRack : MonoBehaviour
 
     private bool objectiveReached;
 
+    [SerializeField]
+    private GameObject clipPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
         freeSpawnPoints = new List<GameObject>();
+        occupiedSpawnPoints = new List<GameObject>();
         foreach (GameObject obj in spawnPoints)
         {
             freeSpawnPoints.Add(obj);
@@ -32,6 +37,7 @@ public class DryingRack : MonoBehaviour
 
         objectiveReached = false;
 
+        GameEvents.Instance.onTryToClipSheet += SpawnClip;
         StartCoroutine(SpawnCo());
     }
 
@@ -49,8 +55,29 @@ public class DryingRack : MonoBehaviour
             {
                 GameObject spawnPoint = freeSpawnPoints[Random.Range(0, freeSpawnPoints.Count)];
                 SpawnSheet(spawnPoint);
+                occupiedSpawnPoints.Add(spawnPoint);
                 freeSpawnPoints.Remove(spawnPoint);
             }
+        }
+    }
+
+    private void SpawnClip(GameObject spawnPointSelected)
+    {
+        if (occupiedSpawnPoints.Contains(spawnPointSelected))
+        {
+            occupiedSpawnPoints.Remove(spawnPointSelected);
+            spawnPoints.Remove(spawnPointSelected);
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-45, 45)));
+            GameObject newClip = Instantiate(clipPrefab, spawnPointSelected.transform.position, rotation);
+            newClip.transform.parent = spawnPointSelected.transform;
+            newClip.transform.position = new Vector2(newClip.transform.position.x, newClip.transform.position.y + 0.5f);
+        }
+
+        if (spawnPoints.Count == 0)
+        {
+            objectiveReached = true;
+            Debug.Log("End level");
+            GameEvents.Instance.EndLevel();
         }
     }
 
@@ -66,12 +93,15 @@ public class DryingRack : MonoBehaviour
     private IEnumerator FallingSheetCo(GameObject sheet, GameObject spawnPoint)
     {
         yield return new WaitForSeconds(secBeforeFalling);
-        Rigidbody2D rbSheet = sheet.GetComponent<Rigidbody2D>();
-        rbSheet.gravityScale = 1;
+        if (spawnPoints.Contains(spawnPoint)) // it has to fall
+        {
+            Rigidbody2D rbSheet = sheet.GetComponent<Rigidbody2D>();
+            rbSheet.gravityScale = 1;
 
-        Destroy(sheet, 0.5f);
-        yield return new WaitForSeconds(1.0f);
+            Destroy(sheet, 0.5f);
+            yield return new WaitForSeconds(1.0f);
 
-        freeSpawnPoints.Add(spawnPoint);
+            freeSpawnPoints.Add(spawnPoint);
+        }
     }
 }

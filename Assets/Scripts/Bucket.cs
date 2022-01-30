@@ -25,6 +25,11 @@ public class Bucket : MonoBehaviour
         GameEvents.Instance.onDropNewBucket += IncreaseNumClips;
     }
 
+    private void OnEnable()
+    {
+        currNumOfClips = numClips - 1;
+    }
+
     private void OnDestroy()
     {
         GameEvents.Instance.onCollectObjectByTag -= UpdateCurrNumOfClips;

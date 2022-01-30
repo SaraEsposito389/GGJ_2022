@@ -61,12 +61,17 @@ public class PlayerController2D : MonoBehaviour
     private bool isDead;
     private bool isFlipped;
     private bool isBucketReady;
-    private bool isClipReady;
-    private bool isClipAvailable;
     private bool isInSwitchArea;
     private bool isSwitchPressed;
 
-    private GameObject bucketZone;
+    [SerializeField]
+    private bool isClipAvailable = false;
+
+    [SerializeField]
+    private bool isClipReady = false;
+    
+    private GameObject bucketZone = null;
+    private GameObject sheetArea = null;
 
     // Start is called before the first frame update
     void Start()
@@ -93,8 +98,9 @@ public class PlayerController2D : MonoBehaviour
         isFlipped = false;
 
         isBucketReady = false;
-        isClipReady = false;
-        isClipAvailable = false;
+        //isClipReady = false;
+        //isClipAvailable = false;
+        isInSwitchArea = false;
 
         if (gender == Gender.Male)
         {
@@ -306,16 +312,16 @@ public class PlayerController2D : MonoBehaviour
     private void TakeOrLeaveBucketAndClips()
     {
         // Leave bucket on bucketZone
-        if (isBucketReady && !isClipReady && bucketZone)
+        if (isBucketReady && !isClipReady && bucketZone && !sheetArea)
         {
             // Player leaves bucket
             GameEvents.Instance.ChangeVisibilityBucket(true);
             isBucketReady = false;
-            //isClipAvailable = true;
+            isClipAvailable = true; // you can take clip
             GameEvents.Instance.CanTakeClips();
             heldObjectBaloon.SetActive(false);
-        } 
-        else if (!isBucketReady && isClipAvailable && bucketZone)
+        }
+        else if (!isBucketReady && isClipAvailable && bucketZone && !sheetArea)
         { // Take clip from bucket
             isClipReady = true;
             isClipAvailable = false;
@@ -327,13 +333,18 @@ public class PlayerController2D : MonoBehaviour
                 heldObjectBaloon.SetActive(true);
             }
         }
-        else if (!isClipAvailable && isClipReady && !bucketZone)
+        else if (!isClipAvailable && isClipReady && sheetArea)
         {
-            //if nel collider del panno
+            // leave clip on sheet
+            GameEvents.Instance.TryToClipSheet(sheetArea);
             Debug.Log(gameObject.name + " mette la clip sui panni");
-            // TODO
+            
             isClipReady = false;
             isClipAvailable = true;
+            sheetArea.GetComponent<BoxCollider2D>().enabled = false;
+            sheetArea = null;
+
+            heldObjectBaloon.SetActive(false);
         }
     }
 
@@ -411,7 +422,12 @@ public class PlayerController2D : MonoBehaviour
         else if (other.gameObject.CompareTag("Switch"))
         {
             isInSwitchArea = true;
-            Debug.Log(gameObject.name + " is in SwitchZone");
+            //Debug.Log(gameObject.name + " is in SwitchZone");
+        }
+        else if (other.gameObject.CompareTag("SheetPoint"))
+        {
+            sheetArea = other.gameObject;
+            //Debug.Log(gameObject.name + " is in SheetArea");
         }
     }
 
@@ -424,6 +440,10 @@ public class PlayerController2D : MonoBehaviour
         else if (other.gameObject.CompareTag("Switch"))
         {
             isInSwitchArea = false;
+        }
+        else if (other.gameObject.CompareTag("SheetPoint"))
+        {
+            sheetArea = null;
         }
     }
 
