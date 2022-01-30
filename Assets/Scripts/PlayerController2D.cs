@@ -14,6 +14,9 @@ public class PlayerController2D : MonoBehaviour
     private Gender gender = Gender.Female;
 
     [SerializeField]
+    private bool isFacingUp = true;
+
+    [SerializeField]
     private float speed = 8;
     [SerializeField]
     private bool canAttack = false;
@@ -72,7 +75,14 @@ public class PlayerController2D : MonoBehaviour
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        savedMovement = Vector3.up;
+        if (isFacingUp)
+        {
+            savedMovement = Vector3.up;
+        } else
+        {
+            savedMovement = Vector3.down;
+        }
+
         anim.SetFloat("verticalMovement", savedMovement.y);
         anim.SetFloat("horizontalMovement", savedMovement.x);
         anim.SetBool("isMoving", false);
@@ -142,6 +152,7 @@ public class PlayerController2D : MonoBehaviour
         {
             isDead = true;
             anim.SetBool("isDead", true);
+            GameEvents.Instance.PlayerDead(gender);
         }
     }
 
@@ -349,6 +360,8 @@ public class PlayerController2D : MonoBehaviour
         {
             numThrownSlippers.SetValue(numThrownSlippers.GetValue() + 1);
         }
+
+        GameEvents.Instance.SlipperThrown();
 
         isSlipperReady = false;
     }

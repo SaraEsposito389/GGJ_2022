@@ -623,40 +623,59 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1500612285}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
+      propertyPath: durationCinematics
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
+      propertyPath: levelToLoadAtTheEnd
+      value: Level2_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].cineImage
       value: 
-      objectReference: {fileID: 21300000, guid: 56f657167322c5f4b8a4be0a7011ee34, type: 3}
+      objectReference: {fileID: 21300000, guid: bc0a01fe21c80af4bb573c3985637b2b, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[1].cineImage
       value: 
-      objectReference: {fileID: 21300000, guid: 5632817f8560eff418dd1956eeb5ea3b, type: 3}
+      objectReference: {fileID: 21300000, guid: 15c7c63fbb67ba141b3ea4324c2b5ae6, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[2].cineImage
       value: 
-      objectReference: {fileID: 21300000, guid: 53a02432814633b479f088c988e72aa6, type: 3}
+      objectReference: {fileID: 21300000, guid: 571912c8cd4db4e45861e028a16fb1cd, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[3].cineImage
       value: 
-      objectReference: {fileID: 21300000, guid: f71527a9851af6242a114fa90d7a8484, type: 3}
+      objectReference: {fileID: 21300000, guid: 571912c8cd4db4e45861e028a16fb1cd, type: 3}
+    - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
+      propertyPath: cinematics.Array.data[4].cineImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 571912c8cd4db4e45861e028a16fb1cd, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].associatedText
-      value: "Tutto \xE8 tranquillo nella Grande Parigi, anche a casa Balordi. "
+      value: "\"Cosa \xE8 questo rumore ?!?\""
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[1].associatedText
-      value: 'Ignazio Balordi si gode il suo zapping pomeridiano '
+      value: 'Ironico: un attimo prima se le stavano suonando, e un attimo dopo sono
+        stati suonati... LETTERALMENTE'
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[2].associatedText
-      value: 'Ma sua moglie Geltrude sembra seccata dal suo continuo poltrire '
+      value: 'Una figura misteriosa li accoglie: "Ora che qui siete capitati,  dovete
+        redimervi dai vostri peccati"'
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[3].associatedText
-      value: "C'\xE8 solo un modo per risolvere la faccenda "
+      value: "\"Voi che avete passato la vita a lanciarvi ciabatte per i motivi pi\xF9
+        futili, dovete fare ammenda\""
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
+      propertyPath: cinematics.Array.data[4].associatedText
+      value: '"Le improprie armi vanno raccolte e per sempre distrutte"'
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216661, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: m_RootOrder

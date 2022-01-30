@@ -100,4 +100,16 @@ public class GameEvents : MonoBehaviour
     {
         onDropNewBucket?.Invoke();
     }
+
+    public event Action<Gender> onPlayerDead;
+    public void PlayerDead(Gender genderPlayerDead)
+    {
+        onPlayerDead?.Invoke(genderPlayerDead);
+    }
+
+    public event Action onSlipperThrown;
+    public void SlipperThrown()
+    {
+        onSlipperThrown?.Invoke();
+    }
 }
