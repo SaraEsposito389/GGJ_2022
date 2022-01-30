@@ -94,4 +94,10 @@ public class GameEvents : MonoBehaviour
     {
         onSwitchPressedEnd?.Invoke();
     }
+
+    public event Action onDropNewBucket;
+    public void DropNewBucket()
+    {
+        onDropNewBucket?.Invoke();
+    }
 }
