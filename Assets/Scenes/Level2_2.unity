@@ -2896,6 +2896,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.91
       objectReference: {fileID: 0}
+    - target: {fileID: 4462366773949726511, guid: b761b6e485a7fd84182be9b70f9c2aa3, type: 3}
+      propertyPath: timeBeforeClose
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4610308071846227031, guid: b761b6e485a7fd84182be9b70f9c2aa3, type: 3}
       propertyPath: m_Name
       value: Gate

@@ -319,32 +319,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483f56fd6b2e2524f811c26e347bdfde, type: 3}
---- !u!1 &267285750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4438614891728689955, guid: 483f56fd6b2e2524f811c26e347bdfde, type: 3}
-  m_PrefabInstance: {fileID: 267285749}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &267285751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267285750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e55fd7fb520444390d05b8c297f8a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawningArea: {fileID: 193485194}
-  slippersPile: {fileID: 1564785448}
-  numBaseSpawnable: 20
-  spawnableMalePrefab: {fileID: 9137149108655067077, guid: 93bd7b4a509e8e346af36063bd9a2fd4, type: 3}
-  spawnableFemalePrefab: {fileID: 1694899175119902871, guid: 054c41c147c75c64dbb8905e11a0f9b6, type: 3}
-  levelToLoad: CINE_Intro_Level2_2
-  delayBeforeChangeScene: 0.75
-  numFemaleThrownSlippers: {fileID: 11400000, guid: ad96710e6adf27940829f81281c98903, type: 2}
-  numMaleThrownSlippers: {fileID: 11400000, guid: ce9550260500c7144b4c66619c6b9b0d, type: 2}
 --- !u!1 &776185519
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +376,58 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16.14014, y: 1.1283064}
   m_EdgeRadius: 0
+--- !u!1 &791064421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 791064423}
+  - component: {fileID: 791064422}
+  m_Layer: 0
+  m_Name: MinigameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &791064422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791064421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e55fd7fb520444390d05b8c297f8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawningArea: {fileID: 193485194}
+  slippersPile: {fileID: 1564785448}
+  numBaseSpawnable: 20
+  spawnableMalePrefab: {fileID: 9137149108655067077, guid: 93bd7b4a509e8e346af36063bd9a2fd4, type: 3}
+  spawnableFemalePrefab: {fileID: 1694899175119902871, guid: 054c41c147c75c64dbb8905e11a0f9b6, type: 3}
+  levelToLoad: CINE_Intro_Level2_2
+  delayBeforeChangeScene: 0.75
+  numFemaleThrownSlippers: {fileID: 11400000, guid: ad96710e6adf27940829f81281c98903, type: 2}
+  numMaleThrownSlippers: {fileID: 11400000, guid: ce9550260500c7144b4c66619c6b9b0d, type: 2}
+--- !u!4 &791064423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791064421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60.700745, y: 12.9083805, z: -3.5691438}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &989489113
 GameObject:
   m_ObjectHideFlags: 0

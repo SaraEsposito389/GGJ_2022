@@ -37,14 +37,17 @@ public class MinigameManager_2_1 : MonoBehaviour
     [SerializeField]
     private IntValue numMaleThrownSlippers;
 
+    private bool arePrefabsSpawned;
+
     // Start is called before the first frame update
     void Start()
     {
+        arePrefabsSpawned = false;
         numMaleSpawnable = numBaseSpawnable + numMaleThrownSlippers.GetValue();
         numFemaleSpawnable = numBaseSpawnable + numFemaleThrownSlippers.GetValue();
         totalNumSpawnable = numMaleSpawnable + numFemaleSpawnable;
 
-        SpawnPrefabs();
+        
 
         //UpdateScoreText();
 
@@ -56,7 +59,11 @@ public class MinigameManager_2_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!arePrefabsSpawned)
+        {
+            arePrefabsSpawned = true;
+            SpawnPrefabs();
+        }
     }
 
     private void SpawnPrefabs()
