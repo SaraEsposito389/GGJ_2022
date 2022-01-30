@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   damage: 1
-  throwSFX: {fileID: 8300000, guid: 92a1c298fd52a1e4fb218ad84377fd6e, type: 3}
+  throwSFX: {fileID: 8300000, guid: 24c72aacf190376448a2f55bc7e1ef8e, type: 3}
   impactSFX: {fileID: 0}
 --- !u!50 &8728651598235963616
 Rigidbody2D:

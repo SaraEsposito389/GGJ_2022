@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215875416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1065098641}
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.84682083, y: 4.5805345}
@@ -221,7 +221,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 4.77, y: 0.295104}
@@ -294,7 +294,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7141651215408902799, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
       propertyPath: timeBattle
-      value: 1
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141651215408902799, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
+      propertyPath: maleWinScene
+      value: CINE_IgnazioEnding
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141651215408902799, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
+      propertyPath: femaleWinScene
+      value: CINE_GeltrudeEnding
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141651215408902799, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
+      propertyPath: sceneNoTimeBullets
+      value: CINE_WorstEnding
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141651215408902799, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
+      propertyPath: sceneNoTimeNoBullet
+      value: CINE_GoodEnding
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141651215408902799, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
+      propertyPath: delayBeforeChangeScene
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9d531ce14e7ff341b968db6ea7811a4, type: 3}
@@ -390,6 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065098641}
+  - component: {fileID: 1065098642}
   m_Layer: 0
   m_Name: ExternalWalls
   m_TagString: Wall
@@ -415,6 +436,32 @@ Transform:
   m_Father: {fileID: 2057188079}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1065098642
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065098640}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 7.7307706, y: -3.7552903}
+  - {x: -6.114558, y: -3.7662377}
+  - {x: -6.2296534, y: 2.5739326}
+  - {x: 7.752289, y: 2.5864718}
+  - {x: 7.7361836, y: -3.8747625}
+  - {x: 7.4961557, y: -3.8410263}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1132072319
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +503,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -3.849189, y: 0.29510403}
@@ -643,7 +690,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.84682083, y: 4.5805345}

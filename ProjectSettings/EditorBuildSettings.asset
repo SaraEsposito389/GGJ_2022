@@ -23,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CINE_Intro_Level2_1.unity
     guid: f04fd63124b4e5149a336292ce77f0e6
+  - enabled: 1
+    path: Assets/Scenes/CINE_GeltrudeEnding.unity
+    guid: eb59bef1826d26a44918a17086b5d0bb
+  - enabled: 1
+    path: Assets/Scenes/CINE_GoodEnding.unity
+    guid: 0b1bad73c0367a94893ef4ee61b5242d
+  - enabled: 1
+    path: Assets/Scenes/CINE_IgnazioEnding.unity
+    guid: a9b6f17a5252667489aba12d2a69335c
+  - enabled: 1
+    path: Assets/Scenes/CINE_WorstEnding.unity
+    guid: ad357daa27bdb994aab6bf3f155ba9a9
   m_configObjects: {}

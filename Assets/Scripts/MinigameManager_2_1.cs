@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MinigameManager_2_1 : MonoBehaviour
 {
@@ -26,7 +27,9 @@ public class MinigameManager_2_1 : MonoBehaviour
     private int score = 0;
 
     [SerializeField]
-    private UnityEngine.UI.Text scoreText;
+    private string levelToLoad;
+    [SerializeField]
+    private float delayBeforeChangeScene = 0.75f;
 
     [SerializeField]
     private IntValue numFemaleThrownSlippers;
@@ -43,7 +46,9 @@ public class MinigameManager_2_1 : MonoBehaviour
 
         SpawnPrefabs();
 
-        UpdateScoreText();
+        //UpdateScoreText();
+
+        Debug.Log(totalNumSpawnable);
 
         GameEvents.Instance.onCollectObject += IncreaseScore;
     }
@@ -68,31 +73,40 @@ public class MinigameManager_2_1 : MonoBehaviour
 
     private void SpawnSinglePrefab(GameObject spawnableObject)
     {
-        Vector2 pos = new Vector2(Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y / 2));
+        Vector2 pos = new Vector2(spawningArea.transform.position.x + Random.Range(-spawningArea.transform.localScale.x / 2, spawningArea.transform.localScale.x / 2), spawningArea.transform.position.y + Random.Range(-spawningArea.transform.localScale.y / 2, spawningArea.transform.localScale.y / 2));
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
         var newObj = Instantiate(spawnableObject, pos, rotation);
         newObj.transform.parent = slippersPile.transform;
     }
 
+    
     private void IncreaseScore()
     {
         score++;
-        UpdateScoreText();
+
+        Debug.Log(score);
+        
         if (score == totalNumSpawnable) // if with timer check also timer end
         {
             EndMinigame();
         }
     }
-
+    /*
     private void UpdateScoreText()
     {
         scoreText.text = score + "/" + totalNumSpawnable;
-    }
+    }*/
 
     private void EndMinigame()
     {
         Debug.Log("End Minigame");
-        // Dialog
-        // NextLevel
+        StartCoroutine(LoadLevelCo(levelToLoad));
+    }
+
+    private IEnumerator LoadLevelCo(string levelToLoad)
+    {
+        yield return new WaitForSeconds(delayBeforeChangeScene);
+
+        SceneManager.LoadScene(levelToLoad);
     }
 }

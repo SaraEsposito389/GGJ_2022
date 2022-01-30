@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CollectableSlipper : MonoBehaviour
 {
+    private bool collected;
     // Start is called before the first frame update
     void Start()
     {
-        
+        collected = false;
     }
 
     // Update is called once per frame
@@ -18,10 +19,14 @@ public class CollectableSlipper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (!collected)
         {
-            GameEvents.Instance.CollectObject();
-            Destroy(gameObject);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                collected = true;
+                GameEvents.Instance.CollectObject();
+                Destroy(gameObject);
+            }
         }
     }
 }
