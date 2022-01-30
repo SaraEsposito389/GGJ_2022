@@ -112,4 +112,16 @@ public class GameEvents : MonoBehaviour
     {
         onSlipperThrown?.Invoke();
     }
+
+    public event Action<GameObject> onTryToClipSheet;
+    public void TryToClipSheet(GameObject sheetPoint)
+    {
+        onTryToClipSheet?.Invoke(sheetPoint);
+    }
+
+    public event Action onEndLevel;
+    public void EndLevel()
+    {
+        onEndLevel?.Invoke();
+    }
 }

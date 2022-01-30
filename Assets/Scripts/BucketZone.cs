@@ -13,6 +13,11 @@ public class BucketZone : MonoBehaviour
         GameEvents.Instance.onChangeVisibilityBucket += BucketVisibility;
     }
 
+    void OnDestroy()
+    {
+        GameEvents.Instance.onChangeVisibilityBucket -= BucketVisibility;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -12,6 +12,7 @@ TagManager:
   - BucketZone
   - Switch
   - Gate
+  - SheetPoint
   layers:
   - Default
   - TransparentFX
