@@ -783,14 +783,13 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 571912c8cd4db4e45861e028a16fb1cd, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].associatedText
-      value: I coniugi hanno superato le prove richieste, ma una nuova sfida gli
-        attende.
+      value: 'La figura blu parla di nuovo: "Congratulazioni per la prima buona azione,
+        Ma adesso avrete bisogno di collaborazione!"'
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[1].associatedText
-      value: "\"Congratulazioni per la prima buona azione, ma adesso avrete bisogno
-        di collaborazione! Avrete bisogno di ci\xF2 che c'\xE8 all'interno per evitare
-        le pene dell'inferno...\""
+      value: "\"Avrete bisogno di ci\xF2 che c'\xE8 all'interno Per evitare le pene
+        dell'inferno...\"\""
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[2].associatedText

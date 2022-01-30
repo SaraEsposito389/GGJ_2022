@@ -784,16 +784,16 @@ PrefabInstance:
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].associatedText
       value: 'Esultante, la figura esclama: "Ora che conoscete la gioia della collaborazione
-        dovrete combattere per la vostra redenzione!'
+        dovrete combattere per la vostra redenzione!"'
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[1].associatedText
-      value: "Il tempo scorre, ad uno spetta la gioia eterna l'altro pagher\xE0 per
-        la sua malvagit\xE0 interna!"
+      value: "\"Il tempo scorre, ad uno spetta la gioia eterna l'altro pagher\xE0
+        per la sua malvagit\xE0 interna!\""
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[2].associatedText
-      value: La sfida della ciabatta santa
+      value: '"La sfida della ciabatta santa"'
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[3].associatedText

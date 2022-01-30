@@ -783,7 +783,8 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 571912c8cd4db4e45861e028a16fb1cd, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].associatedText
-      value: "\"Cosa \xE8 questo rumore ?!?\""
+      value: "\"L'inganno ha svelato la verit\xE0: Tormento eterno per la crudelt\xE0!
+        La scelta migliore \xE8 sicuramente la bont\xE0...\""
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[1].associatedText

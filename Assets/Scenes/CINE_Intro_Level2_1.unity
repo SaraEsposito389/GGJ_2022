@@ -759,7 +759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].cineImage
@@ -798,8 +798,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[3].associatedText
-      value: "\"Voi che avete passato la vita a lanciarvi ciabatte per i motivi pi\xF9
-        futili, dovete fare ammenda\""
+      value: "\"Iniziamo con ci\xF2 che vi ha fatto perire: Di tutte le ciabatte
+        dovete ripulire\""
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[4].associatedText
