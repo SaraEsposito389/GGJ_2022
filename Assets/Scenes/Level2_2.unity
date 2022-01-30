@@ -2596,7 +2596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7599b99e00d46b645926979d392093f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Level2_3
+  levelToLoad: CINE_Intro_Level2_3
   delayBeforeChangeScene: 1
 --- !u!1 &1941771294
 GameObject:

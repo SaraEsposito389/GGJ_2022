@@ -783,12 +783,13 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 571912c8cd4db4e45861e028a16fb1cd, type: 3}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[0].associatedText
-      value: "\"Cosa \xE8 questo rumore ?!?\""
+      value: "All'improvviso un forte rumore interrompe la lite: Cosa sar\xE0 mai,
+        un meteorite?"
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[1].associatedText
-      value: 'Ironico: un attimo prima se le stavano suonando, e un attimo dopo sono
-        stati suonati... LETTERALMENTE'
+      value: "Che suonata drammatica! Per i coniugi Balordi \xE8 proprio una fine
+        traumatica!"
       objectReference: {fileID: 0}
     - target: {fileID: 8011775261284216660, guid: fb9bfc8656d42ce4e9a963fc18f1c427, type: 3}
       propertyPath: cinematics.Array.data[2].associatedText
